@@ -1,36 +1,44 @@
-package myfirstandroidproject.es.covalco.recycle_view_example
+package myfirstandroidproject.es.covalco.recycle_view_example;
 
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import myfirstandroidproject.es.covalco.recycle_view_example.UserAdapter.ViewHolder
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-class UserAdapter(private val userModelList: List<UserModel>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+import java.util.List;
+
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+
+    private List<UserModel> userModelList;
+
+    public UserAdapter(List<UserModel> userModelList) { this.userModelList = userModelList; }
 
     // Creamos la lista sin personalizar
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.user_list_row, parent, false)
-        return ViewHolder(v)
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).
+                inflate(R.layout.user_list_row, parent, false);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
     }
 
     // Personalizamos el ViewHolder
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val name = userModelList[position].name
-        holder.name.text = name
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        String name = userModelList.get(position).getName();
+        holder.name.setText(name);
     }
 
     // Indicamos el número de elementos de la lista
-    override fun getItemCount(): Int {
-        return userModelList.size
-    }
+    @Override
+    public int getItemCount() { return userModelList.size();}
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private val name: TextView
-
-        init {
-            name = v.findViewById(R.id.textUserName) as TextView
+    public static  class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        public ViewHolder(View v){
+            super(v);
+            name = (TextView) v.findViewById(R.id.textUserName);
         }
     }
 }

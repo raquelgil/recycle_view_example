@@ -2,11 +2,13 @@ package myfirstandroidproject.es.covalco.recycle_view_example
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
-class MainActivity : AppCompatActivity() {
+import java.util.ArrayList;
+import java.util.List;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+public class MainActivity: AppCompatActivity() {
+
 }
